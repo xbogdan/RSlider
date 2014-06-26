@@ -5,10 +5,6 @@
   position: relative;
   padding: 4px 0;
 }
-.slider-mask {
-  position: absolute;
-  left: 50%;
-}
 .slider-mask .slider-mask-inner {
   position: relative;
   left: -50%;
@@ -29,12 +25,4 @@
   font-size: 15px;
   color: white;
   margin: 5px 10px;
-}
-.mask {
-  position: absolute;
-  height: 50px;
-  width: 29px;
-  left: 0px;
-  opacity: .0;
-  background: magenta;
 }

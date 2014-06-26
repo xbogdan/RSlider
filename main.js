@@ -1,7 +1,6 @@
 $(document).ready(function() {
   var slider = $('.slider-elements-box');
-  var current = $(".se-cur");
-  var sliderOffset = $(".slider-mask").offset().left;
+  var current = $('.se-cur');
   var centerLine = $('.slider-container').width()/2;
   
   if (current) {
@@ -23,7 +22,7 @@ $(document).ready(function() {
     if (next) {
       var leftSpace = (next.width()/2) + parseInt(next.css('margin-left'), 10) + parseInt(next.css('padding-left'), 10);
       var add = Math.abs(centerLine - next.position().left) + leftSpace;
-      slider.animate({'margin-left': '-='+add+'px'}, 300, "swing");
+      slider.animate({'margin-left': '-='+add+'px'}, 300, 'swing');
       current.removeClass('se-cur');
       current = next.addClass('se-cur');
     }
@@ -35,7 +34,7 @@ $(document).ready(function() {
     if (prev) {
       var leftSpace = (prev.width()/2) + parseInt(prev.css('margin-left'), 10) + parseInt(prev.css('padding-left'), 10);
       var add = Math.abs(centerLine - prev.position().left) - leftSpace;
-      slider.animate({'margin-left': '+='+add+'px'}, 300, "swing");
+      slider.animate({'margin-left': '+='+add+'px'}, 300, 'swing');
       current.removeClass('se-cur');
       current = prev.addClass('se-cur');
     }
