@@ -1,0 +1,40 @@
+.slider-container {
+  width: 250px;
+  background: red;
+  overflow: hidden;
+  position: relative;
+  padding: 4px 0;
+}
+.slider-mask {
+  position: absolute;
+  left: 50%;
+}
+.slider-mask .slider-mask-inner {
+  position: relative;
+  left: -50%;
+  background: black;
+  opacity: 1;
+  width: 2px;
+  height: 50px;
+}
+.slider-elements-box {
+  white-space: nowrap;
+  font-size: 0;
+  background-color: yellow;
+  margin-left: 0px;
+}
+.slider-element {
+  display: inline-block;
+  background: blue;
+  font-size: 15px;
+  color: white;
+  margin: 5px 10px;
+}
+.mask {
+  position: absolute;
+  height: 50px;
+  width: 29px;
+  left: 0px;
+  opacity: .0;
+  background: magenta;
+}
