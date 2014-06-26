@@ -1,11 +1,11 @@
-.slider-container {
+.rs-container {
   width: 250px;
   background: red;
   overflow: hidden;
   position: relative;
   padding: 4px 0;
 }
-.slider-mask .slider-mask-inner {
+.rs-mask .rs-mask-inner {
   position: relative;
   left: -50%;
   background: black;
@@ -13,13 +13,13 @@
   width: 2px;
   height: 50px;
 }
-.slider-elements-box {
+.rs-elements-box {
   white-space: nowrap;
   font-size: 0;
   background-color: yellow;
   margin-left: 0px;
 }
-.slider-element {
+.rs-element {
   display: inline-block;
   background: blue;
   font-size: 15px;

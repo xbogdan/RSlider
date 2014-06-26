@@ -1,7 +1,7 @@
 $(document).ready(function() {
-  var slider = $('.slider-elements-box');
+  var slider = $('.rs-elements-box');
   var current = $('.se-cur');
-  var centerLine = $('.slider-container').width()/2;
+  var centerLine = $('.rs-container').width()/2;
   
   if (current) {
     var leftSpace = (current.width()/2) + parseInt(current.css('margin-left'), 10) + parseInt(current.css('padding-left'), 10);
