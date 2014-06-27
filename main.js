@@ -1,43 +1,45 @@
 $(document).ready(function() {
-  var slider = $('.rs-elements-box');
-  var current = $('.se-cur');
-  var centerLine = $('.rs-container').width()/2;
-  
-  if (current) {
-    var leftSpace = (current.width()/2) + parseInt(current.css('margin-left'), 10) + parseInt(current.css('padding-left'), 10);
-    if (centerLine - current.position().left < 0) {
-      var add = Math.abs(centerLine - current.position().left) + leftSpace;
-      slider.css('margin-left', -add+'px');
-    } else {
-      var add = leftSpace - Math.abs(centerLine - current.position().left);
-      slider.css('margin-left', -add+'px');
+    var slider = $('.rs-elements');
+    var centerLine = $('.rs-container').width()/2;
+    var currentClass = 'rs-active';
+    var elemNr = slider.children().length;
+    var elemPos = [];
+    var currentIndex = 2;
+
+    slider.children().each(function(index, el) {
+        if (currentClass) { $(this).addClass(currentClass) }
+        elemPos.push($(this).position().left + $(this).width()/2 + parseInt($(this).css('margin-left'), 10) + parseInt($(this).css('padding-left'), 10));
+        if (currentClass) { $(this).removeClass(currentClass) }
+    });
+
+    if (currentIndex) {
+        var add = centerLine - elemPos[currentIndex];
+        slider.css('margin-left', add+'px');
+        if (currentClass) { slider.find('> *:eq('+currentIndex+')').addClass(currentClass) }
     }
-  } else {
-    return;
-  }
-  
-  $('a.right').click(function(e) {
-    e.preventDefault();
-    var next = current.next();
-    if (next) {
-      var leftSpace = (next.width()/2) + parseInt(next.css('margin-left'), 10) + parseInt(next.css('padding-left'), 10);
-      var add = Math.abs(centerLine - next.position().left) + leftSpace;
-      slider.animate({'margin-left': '-='+add+'px'}, 300, 'swing');
-      current.removeClass('se-cur');
-      current = next.addClass('se-cur');
-    }
-  });
-  
-  $('a.left').click(function(e) {
-    e.preventDefault();
-    var prev = current.prev();
-    if (prev) {
-      var leftSpace = (prev.width()/2) + parseInt(prev.css('margin-left'), 10) + parseInt(prev.css('padding-left'), 10);
-      var add = Math.abs(centerLine - prev.position().left) - leftSpace;
-      slider.animate({'margin-left': '+='+add+'px'}, 300, 'swing');
-      current.removeClass('se-cur');
-      current = prev.addClass('se-cur');
-    }
-  });
+
+    $('.rs-inc').click(function(e) {
+        e.preventDefault();
+        if (currentIndex + 1 <= elemNr-1) {
+            var add = centerLine - elemPos[++currentIndex];
+            slider.animate({'margin-left': add+'px'}, 200, function() {});
+            if (currentClass) {
+                slider.find('.'+currentClass).removeClass(currentClass);
+                slider.find('> *:eq('+(currentIndex)+')').addClass(currentClass);
+            }
+        }
+    });
+
+    $('.rs-dec').click(function(e) {
+        e.preventDefault();
+        if (currentIndex - 1 >= 0) {
+            var add = centerLine - elemPos[--currentIndex];
+            slider.animate({'margin-left': add+'px'}, 200, function() {});
+            if (currentClass) {
+                slider.find('.'+currentClass).removeClass(currentClass);
+                slider.find('> *:eq('+(currentIndex)+')').addClass(currentClass);
+            }
+        }
+    });
   
 });
