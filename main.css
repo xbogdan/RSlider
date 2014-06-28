@@ -43,7 +43,6 @@
     margin-left: 0px; 
 }
 .rs-mask {
-    width: 250px;
     background: red;
     overflow: hidden;
     position: relative;

@@ -49,7 +49,7 @@ $(document).ready(function() {
     RSlider = (function() {
         function RSlider(element, options) {
             _ = this;
-            _.width =  options && options.width ? options.width : 500;
+            _.width =  options && options.width ? options.width : 250;
             _.element = element;
             _.slider = null;
             _.slidesCount = null;
@@ -57,6 +57,7 @@ $(document).ready(function() {
             _.currentSlide = null;
             _.currentClass = options && options.currentClass ? options.currentClass :  '';
             _.slidesPositions = [];
+            _.centerPoint = _.width / 2;
             _.init();
         }
         return RSlider;
@@ -67,6 +68,7 @@ $(document).ready(function() {
         _.slides = $(_.element).children();
         _.slider = _.slides.wrapAll('<div class="rs-track" />').parent();
         _.sliderMask = _.slider.wrap('<div class="rs-mask" />').parent();
+        _.sliderMask.css('width', _.width+'px');
         _.sliderMask.parent().addClass('rs');
 
         /* Initialize slides number, current slide */
@@ -86,8 +88,19 @@ $(document).ready(function() {
             );
             if (_.currentClass) { $this.removeClass(_.currentClass); }
         };
+
+        _.centerCurrent();
     };
 
+    RSlider.prototype.centerCurrent = function() {
+        if (_.currentSlide) {
+            var newOffset = _.centerPoint - _.slidesPositions[_.currentSlide];
+            // _.slider.css('transform', 'translate3d('+newOffset+'px , 0px, 0px)');
+            console.log(_.currentSlide);
+            _.slider.css('margin-left', newOffset+'px');
+            if (_.currentClass) { _.slides.eq(_.currentSlide).addClass(_.currentClass) }
+        }
+    }
     
     RSlider.prototype.next = function() {
 
