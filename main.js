@@ -54,26 +54,27 @@ $(document).ready(function() {
             _.slider = null;
             _.slidesCount = null;
             _.sliderMask = null;
+            _.sliderBox = null;
             _.initialSlide = options && options.initialSlide ? options.initialSlide : null;
             _.currentSlide = null;
             _.currentClass = options && options.currentClass ? options.currentClass :  '';
             _.slidesPositions = [];
             _.centerPoint = _.width / 2;
             _.animTime = options && options.animationTime ? options.animationTime : 200;
+            _.prevArrow = null;
+            _.nextArrow = null;
             _.init();
-        }
+        };
         return RSlider;
     }());
 
     RSlider.prototype.init = function() {
-        /* Initialize classes */
+        /* Initialize variables */
         _.slides = $(_.element).children();
         _.slider = _.slides.wrapAll('<div class="rs-track" />').parent();
         _.sliderMask = _.slider.wrap('<div class="rs-mask" />').parent();
         _.sliderMask.css('width', _.width+'px');
-        _.sliderMask.parent().addClass('rs');
-
-        /* Initialize slides number, initial slide */
+        _.sliderBox = _.sliderMask.parent().addClass('rs');
         _.slidesCount = _.slides.length;
         if (!_.initialSlide) { _.initialSlide = _.slidesCount / 2; }
 
@@ -91,7 +92,9 @@ $(document).ready(function() {
             if (_.currentClass) { $this.removeClass(_.currentClass); }
         };
 
+        /* Center initial element */
         _.centerInitial();
+        _.buildArrows();
     };
 
     /* Method for centering the wanted initial slide if specified or th default one if not */
@@ -127,6 +130,27 @@ $(document).ready(function() {
                 _.slider.eq(_.currentSlide).addClass(_.currentClass);
             };
         };
+    };
+
+    RSlider.prototype.buildArrows = function() {
+        var arrows = $('<div class="rs-arrows" />');
+        _.prevArrow = $('<a class="rs-arrow-left" />').html('left').css('margin-right', 20+'px');
+        _.nextArrow = $('<a class="rs-arrow-right" />').html('right');
+        arrows.append(_.prevArrow);
+        arrows.append(_.nextArrow);
+        _.prevArrow.on('click', function(event) {
+            event.preventDefault();
+            _.prev();
+        });
+        _.nextArrow.on('click', function(event) {
+            event.preventDefault();
+            _.next();
+        });
+        _.sliderBox.append(arrows);
+    };
+
+    RSlider.prototype.initArrowsEvents = function() {
+
     };
 
     $.fn.rslider = function(options) {
