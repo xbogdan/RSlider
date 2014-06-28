@@ -1,42 +1,51 @@
 .rs-container {
-  width: 250px;
-  background: red;
-  overflow: hidden;
-  position: relative;
-  padding: 4px 0;
+    width: 250px;
+    background: red;
+    overflow: hidden;
+    position: relative;
+    padding: 4px 0;
 }
 .rs-mask .rs-mask-inner {
-  position: relative;
-  left: -50%;
-  background: black;
-  opacity: 1;
-  width: 2px;
-  height: 50px;
+    position: relative;
+    left: -50%;
+    background: black;
+    opacity: 1;
+    width: 2px;
+    height: 50px;
 }
-.rs-elements{
-  white-space: nowrap;
-  font-size: 0;
-  background-color: yellow;
-  margin-left: 0px;
+.rs-elements {
+    white-space: nowrap;
+    font-size: 0;
+    background-color: yellow;
+    margin-left: 0px;
 }
 .rs-element {
-  display: inline-block;
-  background: blue;
-  font-size: 15px;
-  color: white;
-  margin: 5px 10px;
+    display: inline-block;
+    background: blue;
+    font-size: 15px;
+    color: white;
+    margin: 5px 10px;
 }
 
+.slider-elem {
+    display: inline-block;
+    background: blue;
+    font-size: 15px;
+    color: white;
+    margin: 5px 10px;   
+}
+
+
 .rs-track {
-  white-space: nowrap;
-  font-size: 0;
-  background-color: yellow;
-  margin-left: 0px; 
+    white-space: nowrap;
+    font-size: 0;
+    background-color: yellow;
+    margin-left: 0px; 
 }
 .rs-mask {
-  width: 250px;
-  background: red;
-  overflow: hidden;
-  position: relative;
-  padding: 4px 0; 
+    width: 250px;
+    background: red;
+    overflow: hidden;
+    position: relative;
+    padding: 4px 0; 
 }

@@ -42,26 +42,56 @@ $(document).ready(function() {
         }
     });
   
+    $('.slider').rslider();
 });
 
 (function($) {
     RSlider = (function() {
         function RSlider(element, options) {
             _ = this;
-            _.width = 500 || options.width;
+            _.width =  options && options.width ? options.width : 500;
             _.element = element;
             _.slider = null;
+            _.slidesCount = null;
             _.sliderMask = null;
+            _.currentSlide = null;
+            _.currentClass = options && options.currentClass ? options.currentClass :  '';
+            _.slidesPositions = [];
             _.init();
         }
         return RSlider;
     }());
 
     RSlider.prototype.init = function() {
-        _.slider = $(_.element).children().wrapAll('<div class="rs-track" />').parent();
+        /* Initialize classes */
+        _.slides = $(_.element).children();
+        _.slider = _.slides.wrapAll('<div class="rs-track" />').parent();
         _.sliderMask = _.slider.wrap('<div class="rs-mask" />').parent();
+        _.sliderMask.parent().addClass('rs');
+
+        /* Initialize slides number, current slide */
+        _.slidesCount = _.slides.length;
+        _.currentSlide = _.slidesCount / 2;
+
+        /* Initialize positions vector */
+        for (var i = 0; i < _.slidesCount; i++) {
+            var element = $(_.slides[i]);
+            if (_.currentClass) { element.addClass(_.currentClass); }
+            _.slidesPositions.push(
+                element.position().left + 
+                element.width()/2 + 
+                parseInt(element.css('margin-left'), 10) + 
+                parseInt(element.css('padding-left'), 10) + 
+                parseInt(element.css('border-left-width'), 10)
+            );
+            if (_.currentClass) { $this.removeClass(_.currentClass); }
+        };
     };
+
     
+    RSlider.prototype.next = function() {
+
+    };
     $.fn.rslider = function(options) {
         return this.each(function(index, element) {
             element.rslider = new RSlider(element, options);
