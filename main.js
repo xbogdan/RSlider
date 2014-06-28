@@ -43,3 +43,28 @@ $(document).ready(function() {
     });
   
 });
+
+(function($) {
+    RSlider = (function() {
+        function RSlider(element, options) {
+            _ = this;
+            _.width = 500 || options.width;
+            _.element = element;
+            _.slider = null;
+            _.sliderMask = null;
+            _.init();
+        }
+        return RSlider;
+    }());
+
+    RSlider.prototype.init = function() {
+        _.slider = $(_.element).children().wrapAll('<div class="rs-track" />').parent();
+        _.sliderMask = _.slider.wrap('<div class="rs-mask" />').parent();
+    };
+    
+    $.fn.rslider = function(options) {
+        return this.each(function(index, element) {
+            element.rslider = new RSlider(element, options);
+        });
+    };
+}(jQuery));

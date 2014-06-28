@@ -26,3 +26,17 @@
   color: white;
   margin: 5px 10px;
 }
+
+.rs-track {
+  white-space: nowrap;
+  font-size: 0;
+  background-color: yellow;
+  margin-left: 0px; 
+}
+.rs-mask {
+  width: 250px;
+  background: red;
+  overflow: hidden;
+  position: relative;
+  padding: 4px 0; 
+}
