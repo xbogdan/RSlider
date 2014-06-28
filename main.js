@@ -6,7 +6,7 @@ $(document).ready(function() {
     RSlider = (function() {
         function RSlider(element, options) {
             _ = this;
-            _.width =  options && options.width ? options.width : 250;
+            _.width =  options && options.width ? options.width : 500;
             _.element = element;
             _.slider = null;
             _.slidesCount = null;
@@ -91,8 +91,8 @@ $(document).ready(function() {
 
     RSlider.prototype.buildArrows = function() {
         var arrows = $('<div class="rs-arrows" />');
-        _.prevArrow = $('<a class="rs-arrow-left" />').html('left').css('margin-right', 20+'px');
-        _.nextArrow = $('<a class="rs-arrow-right" />').html('right');
+        _.prevArrow = $('<a class="rs-arrow-left" />');
+        _.nextArrow = $('<a class="rs-arrow-right" />');
         arrows.append(_.prevArrow);
         arrows.append(_.nextArrow);
         _.prevArrow.on('click', function(event) {

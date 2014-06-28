@@ -1,23 +1,42 @@
+@font-face {
+    font-family: Sawasdee;
+    src: url('fonts/Sawasdee.ttf');
+}
+
 .slider-elem {
     display: inline-block;
-    background: blue;
-    font-size: 15px;
-    color: white;
+    height: 100px;
+    width: 100px;
     margin: 5px 10px;   
+    font-size: 15px;
+    text-align: center;
+    color: white;
+    background: #2c2c2c;
+}
+.slider-elem h1 {
+    padding: 0;
+    margin: 0;
+    /*line-height: 95px;*/
+    font-family: "Sawasdee", sans-serif;
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
 }
 
 .rs-track {
     margin-left: 0px; 
     font-size: 0;
     white-space: nowrap;
-    background-color: yellow;
+    /*background-color: yellow;*/
 }
 .rs-mask {
     position: relative;
     margin: 0 auto;
-    padding: 4px 0; 
+    /*padding: 4px 0; */
     overflow: hidden;
-    background: red;
+    /*background: red;*/
 }
 .rs-arrows {
     margin-top: 5px;
@@ -27,7 +46,16 @@
 .rs-arrow-left,
 .rs-arrow-right {
     display: inline-block;
-    margin: 0 10px;
+    margin: 0 4px;
+    height: 20px;
+    width: 20px;
+    background-size: 20px 20px;
     font-size: 16px;
     cursor: pointer;
+}
+.rs-arrow-left {
+    background-image: url('img/arrow-left.png');
+}
+.rs-arrow-right {
+    background-image: url('img/arrow-right.png');
 }
