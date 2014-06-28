@@ -5,9 +5,12 @@
 body {
     background-color: rgb(255, 235, 0);
     font-family: 'Sawasdee', sans-serif;
-    font-size: 50px;
     text-align: center;
     color: #2c2c2c;
+}
+#title {
+    text-shadow: 2px 2px white;
+    font-size: 100px;
 }
 .slider-elem {
     display: inline-block;
