@@ -54,7 +54,7 @@ $(document).ready(function() {
             _.slider = null;
             _.slidesCount = null;
             _.sliderMask = null;
-            _.initialSlide = null;
+            _.initialSlide = options && options.initialSlide ? options.initialSlide : null;
             _.currentSlide = null;
             _.currentClass = options && options.currentClass ? options.currentClass :  '';
             _.slidesPositions = [];
@@ -73,9 +73,9 @@ $(document).ready(function() {
         _.sliderMask.css('width', _.width+'px');
         _.sliderMask.parent().addClass('rs');
 
-        /* Initialize slides number, current slide */
+        /* Initialize slides number, initial slide */
         _.slidesCount = _.slides.length;
-        _.initialSlide = _.slidesCount / 2;
+        if (!_.initialSlide) { _.initialSlide = _.slidesCount / 2; }
 
         /* Initialize positions vector */
         for (var i = 0; i < _.slidesCount; i++) {
@@ -94,6 +94,7 @@ $(document).ready(function() {
         _.centerInitial();
     };
 
+    /* Method for centering the wanted initial slide if specified or th default one if not */
     RSlider.prototype.centerInitial = function() {
         if (_.initialSlide) {
             var newOffset = _.centerPoint - _.slidesPositions[_.initialSlide];
@@ -101,21 +102,22 @@ $(document).ready(function() {
             _.slider.css('margin-left', newOffset+'px');
             if (_.currentClass) { _.slides.eq(_.initialSlide).addClass(_.currentClass) }
             _.currentSlide = _.initialSlide;
-        }
-    }
+        };
+    };
 
+    /* Method for moving to the next slide */
     RSlider.prototype.next = function() {
         if (_.currentSlide + 1 <= _.slidesCount - 1) {
             var newOffset = _.centerPoint - _.slidesPositions[++_.currentSlide];
-            console.log(newOffset);
             _.slider.animate({'margin-left': newOffset+'px'}, _.animTime, function() {});
             if (_.currentClass) { 
                 _.slider.find('.'+_.currentClass).removeClass(_.currentClass);
                 _.slider.eq(_.currentSlide).addClass(_.currentClass);
-            }
-        }
+            };
+        };
     };
 
+    /* Method for moving to the previous slide */
     RSlider.prototype.prev = function() {
         if (_.currentSlide - 1 >= 0) {
             var newOffset = _.centerPoint - _.slidesPositions[--_.currentSlide];
@@ -123,22 +125,25 @@ $(document).ready(function() {
             if (_.currentClass) { 
                 _.slider.find('.'+_.currentClass).removeClass(_.currentClass);
                 _.slider.eq(_.currentSlide).addClass(_.currentClass);
-            }
-        }
+            };
+        };
     };
+
     $.fn.rslider = function(options) {
         return this.each(function(index, element) {
             element.rslider = new RSlider(element, options);
         });
     };
+    
     $.fn.rsNext = function() {
         return this.each(function(index, element) {
             element.rslider.next();
         });
-    }
+    };
+    
     $.fn.rsPrev = function() {
         return this.each(function(index, element) {
             element.rslider.prev();
         });
-    }
+    };
 }(jQuery));
