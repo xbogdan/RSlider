@@ -1,7 +1,3 @@
-$(document).ready(function() {
-    x = $('.slider').rslider();
-});
-
 (function($) {
     RSlider = (function() {
         function RSlider(element, options) {
