@@ -61,60 +61,59 @@ $(document).ready(function() {
         };
 
         /* Center initial element */
-        _.centerInitial();
+        // _.centerInitial();
+        _.changeSlide('initial');
         _.buildArrows();
     };
 
-    /* Method for centering the wanted initial slide if specified or th default one if not */
-    RSlider.prototype.centerInitial = function() {
-        if (_.initialSlide) {
-            var newOffset = _.centerPoint - _.slidesPositions[_.initialSlide];
-            // _.slider.css(_.transitionType, 'translate3d('+newOffset+'px, 0px, 0px)');
-            _.slider.animate({ whyNotToUseANonExistingProperty: newOffset }, { 
-                step: function(now) {
-                    $(this).css(_.transitionType, 'translate3d('+now+'px, 0px, 0px)')
-                },
-                duration: 0
-            }, 'linear');
-            if (_.currentClass) { _.slides.eq(_.initialSlide).addClass(_.currentClass) }
-            _.currentSlide = _.initialSlide;
-        };
-    };
+    RSlider.prototype.changeSlide = function(action) {
+        switch(action) {
+            case 'next': 
+                if (_.currentSlide + 1 < _.slidesCount) {
+                    var newOffset = _.centerPoint - _.slidesPositions[++_.currentSlide];
+                    _.slider.animate({ whyNotToUseANonExistingProperty: newOffset }, { 
+                        step: function(now) {
+                            $(this).css(_.transitionType, 'translate3d('+now+'px, 0px, 0px)')
+                        },
+                        duration: _.animTime
+                    }, 'linear');
+                    if (_.currentClass) { 
+                        _.slider.find('.'+_.currentClass).removeClass(_.currentClass);
+                        _.slider.eq(_.currentSlide).addClass(_.currentClass);
+                    };
+                };
+                break;
+            case 'prev': 
+                if (_.currentSlide - 1 >= 0) {
+                    var newOffset = _.centerPoint - _.slidesPositions[--_.currentSlide];
+                    _.slider.animate({ whyNotToUseANonExistingProperty: newOffset }, { 
+                        step: function(now) {
+                            $(this).css(_.transitionType, 'translate3d('+now+'px, 0px, 0px)')
+                        },
+                        duration: _.animTime
+                    }, 'linear');
+                    if (_.currentClass) { 
+                        _.slider.find('.'+_.currentClass).removeClass(_.currentClass);
+                        _.slider.eq(_.currentSlide).addClass(_.currentClass);
+                    };
+                };
+                break;
+            case 'initial':
+                if (_.initialSlide) {
+                    var newOffset = _.centerPoint - _.slidesPositions[_.initialSlide];
+                    _.slider.animate({ whyNotToUseANonExistingProperty: newOffset }, { 
+                        step: function(now) {
+                            $(this).css(_.transitionType, 'translate3d('+now+'px, 0px, 0px)')
+                        },
+                        duration: 0
+                    }, 'linear');
+                    if (_.currentClass) { _.slides.eq(_.initialSlide).addClass(_.currentClass) }
+                    _.currentSlide = _.initialSlide;
+                };
+                break;
+        }
 
-    /* Method for moving to the next slide */
-    RSlider.prototype.next = function() {
-        if (_.currentSlide + 1 < _.slidesCount) {
-            var newOffset = _.centerPoint - _.slidesPositions[++_.currentSlide];
-            _.slider.animate({ whyNotToUseANonExistingProperty: newOffset }, { 
-                step: function(now) {
-                    $(this).css(_.transitionType, 'translate3d('+now+'px, 0px, 0px)')
-                },
-                duration: _.animTime
-            }, 'linear');
-            if (_.currentClass) { 
-                _.slider.find('.'+_.currentClass).removeClass(_.currentClass);
-                _.slider.eq(_.currentSlide).addClass(_.currentClass);
-            };
-        };
-    };
-
-    /* Method for moving to the previous slide */
-    RSlider.prototype.prev = function() {
-        if (_.currentSlide - 1 >= 0) {
-            var newOffset = _.centerPoint - _.slidesPositions[--_.currentSlide];
-            _.slider.animate({ whyNotToUseANonExistingProperty: newOffset }, { 
-                step: function(now) {
-                    $(this).css(_.transitionType, 'translate3d('+now+'px, 0px, 0px)')
-                },
-                duration: _.animTime
-            }, 'linear');
-            if (_.currentClass) { 
-                _.slider.find('.'+_.currentClass).removeClass(_.currentClass);
-                _.slider.eq(_.currentSlide).addClass(_.currentClass);
-            };
-        };
-    };
-
+    }
     RSlider.prototype.buildArrows = function() {
         var arrows = $('<div class="rs-arrows" />');
         _.prevArrow = $('<a class="rs-arrow-left" />');
@@ -123,11 +122,11 @@ $(document).ready(function() {
         arrows.append(_.nextArrow);
         _.prevArrow.on('click', function(event) {
             event.preventDefault();
-            _.prev();
+            _.changeSlide('prev');
         });
         _.nextArrow.on('click', function(event) {
             event.preventDefault();
-            _.next();
+            _.changeSlide('next');
         });
         _.sliderBox.append(arrows);
     };
