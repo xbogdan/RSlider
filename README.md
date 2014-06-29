@@ -23,7 +23,7 @@ Requires [jQuery](http://jquery.com/)
   <link rel="stylesheet" type="text/css" href="css/rslider.css"/>
   ```
 
-3. Add `rslider.js` before your `<body>` tag.
+3. Add `rslider.js` before your closing `<body>` tag.
 
   ```html
   <script type="text/javascript" src="//code.jquery.com/jquery-2.1.1.min.js"></script>
