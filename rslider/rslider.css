@@ -1,0 +1,31 @@
+.rs-track {
+    margin-left: 0px; 
+    font-size: 0;
+    white-space: nowrap;
+}
+.rs-mask {
+    position: relative;
+    margin: 0 auto;
+    overflow: hidden;
+}
+.rs-arrows {
+    margin-top: 5px;
+    font-size: 0;
+    text-align: center;
+}
+.rs-arrow-left,
+.rs-arrow-right {
+    display: inline-block;
+    margin: 0 4px;
+    height: 20px;
+    width: 20px;
+    background-size: 20px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+.rs-arrow-left {
+    background-image: url('img/arrow-left.png');
+}
+.rs-arrow-right {
+    background-image: url('img/arrow-right.png');
+}
