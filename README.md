@@ -4,10 +4,12 @@ RSlider
 Simple javascript carousel which works with elements that have different or the same width.
 
 #### Requirements
+
 Requires [jQuery](http://jquery.com/)
  
  
 #### Usage
+
 1. Setup your HTML.
 
   ```html
@@ -18,21 +20,22 @@ Requires [jQuery](http://jquery.com/)
     <div class="slider-element">content</div>
   </div>
   ```
-
-2. Add `rslider.css` to your `<head>` tag.
+2. Copy `rslider` folder into your project
+ 
+3. Add `rslider.css` to your `<head>` tag.
 
   ```html
-  <link rel="stylesheet" type="text/css" href="css/rslider.css"/>
+  <link rel="stylesheet" type="text/css" href="rslider/rslider.css"/>
   ```
 
-3. Add `rslider.js` before your closing `<body>` tag.
+4. Add `rslider.js` before your closing `<body>` tag.
 
   ```html
   <script type="text/javascript" src="//code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script type="text/javascript" src="js/rslider.js"></script>
+  <script type="text/javascript" src="rslider/rslider.js"></script>
   ```
 
-4. Initialize the slider.
+5. Initialize the slider.
 
   ```javascript
   $(document).ready(function() {
@@ -41,4 +44,5 @@ Requires [jQuery](http://jquery.com/)
   ```
  
 #### Options
+
   TO DO
