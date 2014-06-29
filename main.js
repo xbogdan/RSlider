@@ -61,7 +61,6 @@ $(document).ready(function() {
         };
 
         /* Center initial element */
-        // _.centerInitial();
         _.changeSlide('initial');
         _.buildArrows();
     };
