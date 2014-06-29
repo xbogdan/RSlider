@@ -4,12 +4,12 @@ RSlider
 Simple javascript carousel which works with elements that have different or the same width.
 
 #### Requirements
-=
+
 Requires [jQuery](http://jquery.com/)
  
  
 #### Usage
-==========
+
 1. Setup your HTML.
 
   ```html
@@ -44,6 +44,5 @@ Requires [jQuery](http://jquery.com/)
   ```
  
 #### Options
-============
 
   TO DO
