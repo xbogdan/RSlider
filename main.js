@@ -20,6 +20,7 @@ $(document).ready(function() {
             _.animTime = options && options.animationTime ? options.animationTime : 200;
             _.prevArrow = null;
             _.nextArrow = null;
+            _.transitionType = null;
             _.init();
         };
         return RSlider;
@@ -34,6 +35,16 @@ $(document).ready(function() {
         _.sliderBox = _.sliderMask.parent().addClass('rs');
         _.slidesCount = _.slides.length;
         if (!_.initialSlide) { _.initialSlide = Math.ceil(_.slidesCount / 2); }
+
+        if (document.body.style.MozTransform !== undefined) {
+            _.transitionType = "-moz-transform";
+        } else if (document.body.style.webkitTransform !== undefined) {
+            _.transitionType = "-webkit-transform";
+        } else if (document.body.style.msTransform !== undefined) {
+            _.transitionType = "-ms-transform";
+        } else {
+            _.transitionType = "transform";
+        }
 
         /* Initialize positions vector */
         for (var i = 0; i < _.slidesCount; i++) {
@@ -58,8 +69,13 @@ $(document).ready(function() {
     RSlider.prototype.centerInitial = function() {
         if (_.initialSlide) {
             var newOffset = _.centerPoint - _.slidesPositions[_.initialSlide];
-            // _.slider.css('transform', 'translate3d('+newOffset+'px , 0px, 0px)');
-            _.slider.css('margin-left', newOffset+'px');
+            // _.slider.css(_.transitionType, 'translate3d('+newOffset+'px, 0px, 0px)');
+            _.slider.animate({ whyNotToUseANonExistingProperty: newOffset }, { 
+                step: function(now) {
+                    $(this).css(_.transitionType, 'translate3d('+now+'px, 0px, 0px)')
+                },
+                duration: 0
+            }, 'linear');
             if (_.currentClass) { _.slides.eq(_.initialSlide).addClass(_.currentClass) }
             _.currentSlide = _.initialSlide;
         };
@@ -67,9 +83,14 @@ $(document).ready(function() {
 
     /* Method for moving to the next slide */
     RSlider.prototype.next = function() {
-        if (_.currentSlide + 1 <= _.slidesCount - 1) {
+        if (_.currentSlide + 1 < _.slidesCount) {
             var newOffset = _.centerPoint - _.slidesPositions[++_.currentSlide];
-            _.slider.animate({'margin-left': newOffset+'px'}, _.animTime, function() {});
+            _.slider.animate({ whyNotToUseANonExistingProperty: newOffset }, { 
+                step: function(now) {
+                    $(this).css(_.transitionType, 'translate3d('+now+'px, 0px, 0px)')
+                },
+                duration: _.animTime
+            }, 'linear');
             if (_.currentClass) { 
                 _.slider.find('.'+_.currentClass).removeClass(_.currentClass);
                 _.slider.eq(_.currentSlide).addClass(_.currentClass);
@@ -81,7 +102,12 @@ $(document).ready(function() {
     RSlider.prototype.prev = function() {
         if (_.currentSlide - 1 >= 0) {
             var newOffset = _.centerPoint - _.slidesPositions[--_.currentSlide];
-            _.slider.animate({'margin-left': newOffset+'px'}, _.animTime, function() {});
+            _.slider.animate({ whyNotToUseANonExistingProperty: newOffset }, { 
+                step: function(now) {
+                    $(this).css(_.transitionType, 'translate3d('+now+'px, 0px, 0px)')
+                },
+                duration: _.animTime
+            }, 'linear');
             if (_.currentClass) { 
                 _.slider.find('.'+_.currentClass).removeClass(_.currentClass);
                 _.slider.eq(_.currentSlide).addClass(_.currentClass);
