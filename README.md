@@ -42,10 +42,20 @@ Requires [jQuery](http://jquery.com/)
     $('.slider').rslider(/* Options */);
   });
   ```
+  Example with options:
+  ```javascript
+  $(document).ready(function() {
+    $('.slider').rslider({
+      width: 600,
+      arrows: true,
+      initialSlide: 3
+    });
+  });
+  ```
  
 #### Options
   Option | Type | Default | Description
   ------ | ---- | ------- | -----------
   width  | int  | 500     | Sliders mask width
-  arrow  | boolean | false | Show/hide arrows
+  arrows  | boolean | false | Show/hide arrows
   initialSlide | int | number of elements / 2 | Which element to be centered
