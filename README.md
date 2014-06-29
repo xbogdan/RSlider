@@ -44,5 +44,8 @@ Requires [jQuery](http://jquery.com/)
   ```
  
 #### Options
-
-  TO DO
+  Option | Type | Default | Description
+  ------ | ---- | ------- | -----------
+  width  | int  | 500     | Sliders mask width
+  arrow  | boolean | false | Show/hide arrows
+  initialSlide | int | number of elements / 2 | Which element to be centered
