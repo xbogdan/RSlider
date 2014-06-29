@@ -33,7 +33,7 @@ $(document).ready(function() {
         _.sliderMask.css('width', _.width+'px');
         _.sliderBox = _.sliderMask.parent().addClass('rs');
         _.slidesCount = _.slides.length;
-        if (!_.initialSlide) { _.initialSlide = _.slidesCount / 2; }
+        if (!_.initialSlide) { _.initialSlide = Math.ceil(_.slidesCount / 2); }
 
         /* Initialize positions vector */
         for (var i = 0; i < _.slidesCount; i++) {
