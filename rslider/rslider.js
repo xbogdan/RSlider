@@ -8,6 +8,7 @@
             _.slidesCount = null;
             _.sliderMask = null;
             _.sliderBox = null;
+            _.arrows = options && options.arrows ? options.arrows : false;
             _.initialSlide = options && options.initialSlide ? options.initialSlide : null;
             _.currentSlide = null;
             _.currentClass = options && options.currentClass ? options.currentClass :  '';
@@ -58,7 +59,9 @@
 
         /* Center initial element */
         _.changeSlide('initial');
-        _.buildArrows();
+        if (_.arrows === true) {
+            _.buildArrows();
+        }
     };
 
     RSlider.prototype.changeSlide = function(action) {

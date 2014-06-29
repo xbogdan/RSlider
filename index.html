@@ -56,7 +56,11 @@
     <script src="rslider/rslider.js"></script>
     <script>
         $(document).ready(function() {
-            x = $('.slider').rslider();
+            x = $('.slider').rslider({
+                width: 600,
+                arrows: true,
+                initialSlide: 4
+            });
         });
     </script>
 </body>
