@@ -1,11 +1,13 @@
 RSlider
 ======
 
-Carousel that works with different width for each element.
+Simple javascript carousel which works with elements that have different or the same width.
 
+#### Requirements
 Requires [jQuery](http://jquery.com/)
  
-####Usage
+ 
+#### Usage
 1. Setup your HTML.
 
   ```html
@@ -37,3 +39,6 @@ Requires [jQuery](http://jquery.com/)
     $('.slider').rslider(/* Options */);
   });
   ```
+ 
+#### Options
+TO DO
