@@ -1,8 +1,42 @@
 <html>
 <head>
-    <link rel="stylesheet" href="main.css">
-    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="main.js"></script>
+    <link rel="stylesheet" href="rslider/rslider.css">
+    <style>
+        @font-face {
+            font-family: Sawasdee;
+            src: url('fonts/Sawasdee.ttf');
+        }
+        body {
+            background-color: rgb(255, 235, 0);
+            font-family: 'Sawasdee', sans-serif;
+            text-align: center;
+            color: #2c2c2c;
+        }
+        #title {
+            text-shadow: 2px 2px white;
+            font-size: 100px;
+        }
+        .slider-elem {
+            display: inline-block;
+            height: 100px;
+            width: 100px;
+            margin: 5px 10px;   
+            font-size: 15px;
+            text-align: center;
+            color: white;
+            background: #2c2c2c;
+        }
+        .slider-elem h1 {
+            padding: 0;
+            margin: 0;
+            font-family: "Sawasdee", sans-serif;
+            position: relative;
+            top: 50%;
+            -webkit-transform: translateY(-50%);
+            -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+        }
+    </style>
 </head>
 <body>
     <h1 id="title">RSlider</h1>
@@ -18,5 +52,7 @@
         <div class="slider-elem" style="width: 90px"><h1>9</h1></div>
     </div>
 
+    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="rslider/rslider.js"></script>
 </body>
 </html>

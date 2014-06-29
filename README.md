@@ -41,4 +41,4 @@ Requires [jQuery](http://jquery.com/)
   ```
  
 #### Options
-TO DO
+  TO DO
