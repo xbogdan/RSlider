@@ -29,7 +29,7 @@
         _.slider = _.slides.wrapAll('<div class="rs-track" />').parent();
         _.sliderMask = _.slider.wrap('<div class="rs-mask" />').parent();
         _.sliderMask.css('width', _.width+'px');
-        _.sliderBox = _.sliderMask.parent().addClass('rs');
+        _.sliderBox = _.sliderMask.parent().addClass('rs').css('width', _.width+'px');
         _.slidesCount = _.slides.length;
         if (!_.initialSlide) { _.initialSlide = Math.ceil(_.slidesCount / 2); }
 
@@ -59,8 +59,8 @@
 
         /* Center initial element */
         _.changeSlide('initial');
-        if (_.arrows === true) {
-            _.buildArrows();
+        if (_.arrows === 'bottom' || _.arrows === 'sides') {
+            _.buildArrows(_.arrows);
         }
     };
 
@@ -112,12 +112,28 @@
         }
 
     }
-    RSlider.prototype.buildArrows = function() {
-        var arrows = $('<div class="rs-arrows" />');
+    RSlider.prototype.buildArrows = function(position) {
+        if (position === undefined || position === '') return;
         _.prevArrow = $('<a class="rs-arrow-left" />');
         _.nextArrow = $('<a class="rs-arrow-right" />');
-        arrows.append(_.prevArrow);
-        arrows.append(_.nextArrow);
+        if (position === 'bottom') {
+            var arrows = $('<div class="rs-arrows" />');
+            arrows.append(_.prevArrow);
+            arrows.append(_.nextArrow);
+            _.sliderBox.append(arrows);
+            _.initArrowsEvents();
+        }
+        if (position === 'sides') {
+            _.prevArrow.addClass('rs-arrow-abs');
+            _.nextArrow.addClass('rs-arrow-abs');
+            _.sliderBox.append(_.prevArrow);
+            _.sliderBox.append(_.nextArrow);
+            _.initArrowsEvents();
+        }
+    };
+
+    RSlider.prototype.initArrowsEvents = function() {
+        if (_.prevArrow === null || _.nextArrow === null) return;
         _.prevArrow.on('click', function(event) {
             event.preventDefault();
             _.changeSlide('prev');
@@ -126,11 +142,6 @@
             event.preventDefault();
             _.changeSlide('next');
         });
-        _.sliderBox.append(arrows);
-    };
-
-    RSlider.prototype.initArrowsEvents = function() {
-
     };
 
     $.fn.rslider = function(options) {

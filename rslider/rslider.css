@@ -1,3 +1,7 @@
+.rs {
+    position: relative;
+    margin: 0 auto;
+}
 .rs-track {
     margin-left: 0px; 
     font-size: 0;
@@ -28,4 +32,17 @@
 }
 .rs-arrow-right {
     background-image: url('img/arrow-right.png');
+}
+.rs-arrow-abs.rs-arrow-left,
+.rs-arrow-abs.rs-arrow-right {
+    position: absolute;
+    top: 50%;
+    z-index: 10;
+    margin-top: -10px;
+}
+.rs-arrow-abs.rs-arrow-left {
+    left: -30px;
+}
+.rs-arrow-abs.rs-arrow-right {
+    right: -30px;
 }
