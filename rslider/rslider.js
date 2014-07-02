@@ -186,13 +186,25 @@
     
     $.fn.rsNext = function() {
         return this.each(function(index, element) {
-            element.rslider.next();
+            element.rslider.changeSlide('next');
         });
     };
     
     $.fn.rsPrev = function() {
         return this.each(function(index, element) {
-            element.rslider.prev();
+            element.rslider.changeSlide('prev');
+        });
+    };
+
+    $.fn.rsResetSlide = function() {
+        return this.each(function(index, element) {
+            element.rslider.changeSlide('initial');
+        });
+    };
+
+    $.fn.rsJumpTo = function(slideNr) {
+        return this.each(function(index, element) {
+            element.rslider.changeSlide('jump', slideNr);
         });
     };
 }(jQuery));
