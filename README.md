@@ -66,6 +66,8 @@ Requires [jQuery](http://jquery.com/)
  ------ | --------- | -----------
  rsNext() | | Next slide
  rsPrev() | | Previous slide
+ rsResetSlide() | | Reset to initial slide
+ rsJumpTo | int | Jump to slide
  
  
  
