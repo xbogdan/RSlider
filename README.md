@@ -59,3 +59,14 @@ Requires [jQuery](http://jquery.com/)
   width  | int  | 500     | Sliders mask width
   arrows  | boolean | false | Show/hide arrows
   initialSlide | int | number of elements / 2 | Which element to be centered
+
+#### Methods
+ Method | Arguments | Description
+ ------ | --------- | -----------
+ rsNext() | | Next slide
+ rsPrev() | | Previous slide
+ 
+ 
+ 
+ 
+ 
