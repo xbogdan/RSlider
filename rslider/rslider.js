@@ -8,7 +8,7 @@
             _.slidesCount = null;
             _.sliderMask = null;
             _.sliderBox = null;
-            _.arrows = options && options.arrows ? options.arrows : false;
+            _.arrows = options && options.arrows ? options.arrows : 'sides' ;
             _.initialSlide = options && options.initialSlide ? options.initialSlide : null;
             _.currentSlide = null;
             _.currentClass = options && options.currentClass ? options.currentClass :  '';
