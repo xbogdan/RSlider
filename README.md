@@ -58,6 +58,7 @@ Requires [jQuery](http://jquery.com/)
   ------ | ---- | ------- | -----------
   width  | int  | 500     | Sliders mask width
   arrows  | string | 'sides' | 'sides' or 'bottom' 
+  dots  | boolean | false | Dots under the slider 
   initialSlide | int | number of elements / 2 | Which element to be centered
 
 #### Methods

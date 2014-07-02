@@ -46,3 +46,19 @@
 .rs-arrow-abs.rs-arrow-right {
     right: -30px;
 }
+.rs-dots {
+    font-size: 0;
+}
+.rs-dot {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    margin: 10px 5px 0 5px;
+    background-color: black;
+    opacity: .5;
+    border-radius: 100%;
+}
+.rs-dot:hover,
+.rs-dot.rs-dot-active {
+    opacity: .9;
+}

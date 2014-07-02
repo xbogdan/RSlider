@@ -8,6 +8,7 @@
             _.slidesCount = null;
             _.sliderMask = null;
             _.sliderBox = null;
+            _.dots = options && options.dots ? options.dots : false;
             _.arrows = options && options.arrows ? options.arrows : 'sides' ;
             _.initialSlide = options && options.initialSlide ? options.initialSlide : null;
             _.currentSlide = null;
@@ -18,6 +19,7 @@
             _.prevArrow = null;
             _.nextArrow = null;
             _.transitionType = null;
+            _.dotsArray = [];
             _.init();
         };
         return RSlider;
@@ -62,9 +64,12 @@
         if (_.arrows === 'bottom' || _.arrows === 'sides') {
             _.buildArrows(_.arrows);
         }
+        if (_.dots) {
+            _.buildDots();
+        }
     };
 
-    RSlider.prototype.changeSlide = function(action) {
+    RSlider.prototype.changeSlide = function(action, slideNr) {
         switch(action) {
             case 'next': 
                 if (_.currentSlide + 1 < _.slidesCount) {
@@ -109,6 +114,21 @@
                     _.currentSlide = _.initialSlide;
                 };
                 break;
+            case 'jump': 
+                if (slideNr === undefined || slideNr < 0 || slideNr >= _.slidesCount) return;
+                _.currentSlide = slideNr;
+                var newOffset = _.centerPoint - _.slidesPositions[_.currentSlide];
+                _.slider.animate({ whyNotToUseANonExistingProperty: newOffset }, { 
+                    step: function(now) {
+                        $(this).css(_.transitionType, 'translate3d('+now+'px, 0px, 0px)')
+                    },
+                    duration: _.animTime
+                }, 'linear');
+                if (_.currentClass) { 
+                    _.slider.find('.'+_.currentClass).removeClass(_.currentClass);
+                    _.slider.eq(_.currentSlide).addClass(_.currentClass);
+                };
+                break;
         }
 
     }
@@ -142,6 +162,20 @@
             event.preventDefault();
             _.changeSlide('next');
         });
+    };
+
+    RSlider.prototype.buildDots = function() {
+        var dots = $('<div class="rs-dots" />');
+        for (var i = 0; i < _.slidesCount; i++) {
+            var dot = $('<a class="rs-dot" />').data('slide-nr', i);
+            dot.on('click', function(event) {
+                event.preventDefault();
+                _.changeSlide('jump', $(this).data('slide-nr'));
+            });
+            _.dotsArray.push(dot);
+            dots.append(dot);
+        }
+        _.sliderBox.append(dots);
     };
 
     $.fn.rslider = function(options) {
