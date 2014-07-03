@@ -3,6 +3,8 @@
     margin: 0 auto;
 }
 .rs-track {
+    position: relative;
+    z-index: 1;
     margin-left: 0px; 
     font-size: 0;
     white-space: nowrap;
@@ -11,6 +13,10 @@
     position: relative;
     margin: 0 auto;
     overflow: hidden;
+}
+.rs-overlay {
+    position: absolute;
+    z-index: 2;
 }
 .rs-arrows {
     margin-top: 5px;

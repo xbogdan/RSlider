@@ -1,3 +1,16 @@
+/*
+ * RSlider
+ *
+ * Github source code:
+ * https://github.com/xbogdan/RSlider/
+ *
+ * Copyright (c) 2014 - Bogdan Boamfa
+ *
+ * License MIT
+ *
+ * Version:  v1.0
+ * Last update: 2014-07-03
+ */
 (function($) {
     RSlider = (function() {
         function RSlider(element, options) {
@@ -7,6 +20,8 @@
             _.slider = null;
             _.slidesCount = null;
             _.sliderMask = null;
+            _.sliderOverlay = options && options.overlay ? options.overlay : null;
+            _.sliderOverlayClass = options && options.overlayClass ? options.overlayClass : '';
             _.sliderBox = null;
             _.dots = options && options.dots ? options.dots : false;
             _.arrows = options && options.arrows ? options.arrows : 'sides' ;
@@ -30,6 +45,10 @@
         _.slides = $(_.element).children();
         _.slider = _.slides.wrapAll('<div class="rs-track" />').parent();
         _.sliderMask = _.slider.wrap('<div class="rs-mask" />').parent();
+        if (_.sliderOverlay) {
+            var overlay = $('<div class="rs-overlay" />').addClass(_.sliderOverlayClass).css('height', _.slider.height());
+            _.sliderMask.prepend(overlay);
+        }
         _.sliderMask.css('width', _.width+'px');
         _.sliderBox = _.sliderMask.parent().addClass('rs').css('width', _.width+'px');
         _.slidesCount = _.slides.length;
