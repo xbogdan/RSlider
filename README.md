@@ -65,14 +65,13 @@ Requires [jQuery](http://jquery.com/)
 
 
 #### Methods
- Method | Arguments | Description
- ------ | --------- | -----------
- rsNext() | | Next slide
- rsPrev() | | Previous slide
- rsResetSlide() | | Reset to initial slide
- rsJumpTo() | int | Jump to slide
+  Method | Arguments | Description
+  ------ | --------- | -----------
+  rsNext() | | Next slide
+  rsPrev() | | Previous slide
+  rsResetSlide() | | Reset to initial slide
+  rsJumpTo() | int | Jump to slide
  
- 
- 
- 
+ #### License
+  MIT.
  
