@@ -14,7 +14,7 @@
 (function($) {
     RSlider = (function() {
         function RSlider(element, options) {
-            _ = this;
+            var _ = this;
             _.width =  options && options.width ? options.width : 500;
             _.element = element;
             _.slides = null;
@@ -43,6 +43,7 @@
 
     RSlider.prototype.init = function() {
         /* Initialize variables */
+        var _ = this;
         _.slides = $(_.element).children();
         _.slider = _.slides.wrapAll('<div class="rs-track" />').parent();
         _.sliderMask = _.slider.wrap('<div class="rs-mask" />').parent();
@@ -96,6 +97,7 @@
     };
 
     RSlider.prototype.changeSlide = function(action, slideNr) {
+        var _ = this;
         switch(action) {
             case 'next': 
                 if (_.currentSlide + 1 < _.slidesCount) {
@@ -163,6 +165,7 @@
     }
     RSlider.prototype.buildArrows = function(position) {
         if (position === undefined || position === '') return;
+        var _ = this;
         _.prevArrow = $('<a class="rs-arrow-left" />');
         _.nextArrow = $('<a class="rs-arrow-right" />');
         if (position === 'bottom') {
@@ -182,6 +185,7 @@
     };
 
     RSlider.prototype.initArrowsEvents = function() {
+        var _ = this;
         if (_.prevArrow === null || _.nextArrow === null) return;
         _.prevArrow.on('click', function(event) {
             event.preventDefault();
@@ -194,6 +198,7 @@
     };
 
     RSlider.prototype.buildDots = function() {
+        var _ = this;
         var dots = $('<div class="rs-dots" />');
         for (var i = 0; i < _.slidesCount; i++) {
             var dot = $('<a class="rs-dot" />').data('slide-nr', i);

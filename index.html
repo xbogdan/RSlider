@@ -41,7 +41,22 @@
 </head>
 <body>
     <h1 id="title">RSlider</h1>
-    <div class="slider">
+
+    <h2>Side arrows and dots</h2>
+    <div class="slider1">
+        <div class="slider-elem" style="width: 110px"><h1>1</h1></div>
+        <div class="slider-elem" style="width: 150px"><h1>2</h1></div>
+        <div class="slider-elem" style="width: 200px"><h1>3</h1></div>
+        <div class="slider-elem" style="width: 70px"><h1>4</h1></div>
+        <div class="slider-elem" style="width: 100px"><h1>5</h1></div>
+        <div class="slider-elem" style="width: 150px"><h1>6</h1></div>
+        <div class="slider-elem" style="width: 120px"><h1>7</h1></div>
+        <div class="slider-elem" style="width: 70px"><h1>8</h1></div>
+        <div class="slider-elem" style="width: 90px"><h1>9</h1></div>
+    </div>
+
+    <h2 style="margin-top: 100px">Bottom arrows</h2>
+    <div class="slider2">
         <div class="slider-elem" style="width: 110px"><h1>1</h1></div>
         <div class="slider-elem" style="width: 150px"><h1>2</h1></div>
         <div class="slider-elem" style="width: 200px"><h1>3</h1></div>
@@ -57,10 +72,16 @@
     <script src="rslider/rslider.js"></script>
     <script>
         $(document).ready(function() {
-            x = $('.slider').rslider({
+            x = $('.slider1').rslider({
                 width: 600,
                 arrows: 'sides',
                 dots: true,
+                initialSlide: 4
+            });
+
+            y = $('.slider2').rslider({
+                width: 600,
+                arrows: 'bottom',
                 initialSlide: 4
             });
         });
