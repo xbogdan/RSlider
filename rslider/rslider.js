@@ -46,10 +46,6 @@
         _.slides = $(_.element).children();
         _.slider = _.slides.wrapAll('<div class="rs-track" />').parent();
         _.sliderMask = _.slider.wrap('<div class="rs-mask" />').parent();
-        if (_.sliderOverlay) {
-            var overlay = $('<div class="rs-overlay" />').addClass(_.sliderOverlayClass).css('height', _.slider.height());
-            _.sliderMask.prepend(overlay);
-        }
         _.sliderMask.css('width', _.width+'px');
         _.sliderBox = _.sliderMask.parent().addClass('rs').css('width', _.width+'px');
         _.slidesCount = _.slides.length;
@@ -81,9 +77,19 @@
 
         /* Center initial element */
         _.changeSlide('initial');
+
+        /* Add overlay image */
+        if (_.sliderOverlay) {
+            var overlay = $('<div class="rs-overlay" />').addClass(_.sliderOverlayClass).css('height', _.slider.height());
+            _.sliderMask.prepend(overlay);
+        }
+
+        /* Add arrows */
         if (_.arrows === 'bottom' || _.arrows === 'sides') {
             _.buildArrows(_.arrows);
         }
+
+        /* Add dots */
         if (_.dots) {
             _.buildDots();
         }
