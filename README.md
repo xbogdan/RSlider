@@ -73,5 +73,5 @@ Requires [jQuery](http://jquery.com/)
   rsJumpTo() | int | Jump to slide
  
 #### License
-  MIT.
+  [MIT](LICENSE)
  
