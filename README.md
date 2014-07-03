@@ -60,6 +60,9 @@ Requires [jQuery](http://jquery.com/)
   arrows  | string | 'sides' | 'sides' or 'bottom' 
   dots  | boolean | false | Dots under the slider 
   initialSlide | int | number of elements / 2 | Which element to be centered
+  overlay | boolean | false | Overlay container
+  overlayClass | string | empty string | Class for overlay container
+
 
 #### Methods
  Method | Arguments | Description

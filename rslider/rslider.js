@@ -20,7 +20,7 @@
             _.slider = null;
             _.slidesCount = null;
             _.sliderMask = null;
-            _.sliderOverlay = options && options.overlay ? options.overlay : null;
+            _.sliderOverlay = options && options.overlay ? options.overlay : false;
             _.sliderOverlayClass = options && options.overlayClass ? options.overlayClass : '';
             _.sliderBox = null;
             _.dots = options && options.dots ? options.dots : false;
