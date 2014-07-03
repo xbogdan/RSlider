@@ -17,10 +17,11 @@
             _ = this;
             _.width =  options && options.width ? options.width : 500;
             _.element = element;
+            _.slides = null;
             _.slider = null;
             _.slidesCount = null;
             _.sliderMask = null;
-            _.sliderOverlay = options && options.overlay ? options.overlay : false;
+            _.sliderOverlay = options && options.overlay ? options.overlay : null;
             _.sliderOverlayClass = options && options.overlayClass ? options.overlayClass : '';
             _.sliderBox = null;
             _.dots = options && options.dots ? options.dots : false;
@@ -75,7 +76,7 @@
                 parseInt(element.css('padding-left'), 10) + 
                 parseInt(element.css('border-left-width'), 10)
             );
-            if (_.currentClass) { $this.removeClass(_.currentClass); }
+            if (_.currentClass) { element.removeClass(_.currentClass); }
         };
 
         /* Center initial element */
@@ -100,8 +101,8 @@
                         duration: _.animTime
                     }, 'linear');
                     if (_.currentClass) { 
-                        _.slider.find('.'+_.currentClass).removeClass(_.currentClass);
-                        _.slider.eq(_.currentSlide).addClass(_.currentClass);
+                        _.slides.eq(_.currentSlide-1).removeClass(_.currentClass);
+                        _.slides.eq(_.currentSlide).addClass(_.currentClass);
                     };
                 };
                 break;
@@ -115,8 +116,8 @@
                         duration: _.animTime
                     }, 'linear');
                     if (_.currentClass) { 
-                        _.slider.find('.'+_.currentClass).removeClass(_.currentClass);
-                        _.slider.eq(_.currentSlide).addClass(_.currentClass);
+                        _.slides.eq(_.currentSlide+1).removeClass(_.currentClass);
+                        _.slides.eq(_.currentSlide).addClass(_.currentClass);
                     };
                 };
                 break;
@@ -129,7 +130,10 @@
                         },
                         duration: 0
                     }, 'linear');
-                    if (_.currentClass) { _.slides.eq(_.initialSlide).addClass(_.currentClass) }
+                    if (_.currentClass) { 
+                        _.slider.find('.'+_.currentClass).removeClass(_.currentClass);
+                        _.slides.eq(_.initialSlide).addClass(_.currentClass);
+                    }
                     _.currentSlide = _.initialSlide;
                 };
                 break;
@@ -145,7 +149,7 @@
                 }, 'linear');
                 if (_.currentClass) { 
                     _.slider.find('.'+_.currentClass).removeClass(_.currentClass);
-                    _.slider.eq(_.currentSlide).addClass(_.currentClass);
+                    _.slides.eq(_.currentSlide).addClass(_.currentClass);
                 };
                 break;
         }
