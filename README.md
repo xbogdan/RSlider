@@ -42,16 +42,18 @@ Requires [jQuery](http://jquery.com/)
     $('.slider').rslider(/* Options */);
   });
   ```
-  Example with options:
-  ```javascript
-  $(document).ready(function() {
-    $('.slider').rslider({
-      width: 600,
-      arrows: true,
-      initialSlide: 3
-    });
+
+#### Examples
+
+```javascript
+$(document).ready(function() {
+  $('.slider').rslider({
+    width: 600,
+    arrows: true,
+    initialSlide: 3
   });
-  ```
+});
+```
  
 #### Options
   Option | Type | Default | Description
