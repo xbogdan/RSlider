@@ -72,6 +72,6 @@ Requires [jQuery](http://jquery.com/)
   rsResetSlide() | | Reset to initial slide
   rsJumpTo() | int | Jump to slide
  
- #### License
+#### License
   MIT.
  
