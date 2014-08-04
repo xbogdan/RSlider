@@ -74,6 +74,7 @@ $(document).ready(function() {
   rsPrev() | | Previous slide
   rsResetSlide() | | Reset to initial slide
   rsJumpTo() | int | Jump to slide
+  rsGetCurrentSlide() | | Return current element as jQuery object
  
 #### License
   [MIT](LICENSE)
