@@ -151,7 +151,7 @@
                     _.currentSlide = _.initialSlide;
                 };
                 if (typeof _.initialSlide == 'string') {
-                    for (var i = 0; i < _.slides.length; i++) {
+                    for (var i = 0; i < _.slidesCount; i++) {
                         if ($(_.slides[i]).hasClass(_.initialSlide)) {
                             _.initialSlide = i;
                             _.changeSlide('initial');
@@ -178,6 +178,12 @@
         }
 
     }
+
+    RSlider.prototype.getCurrentSlide = function(position) {
+        var _ = this;
+        return $(_.slides[_.currentSlide]);
+    };
+
     RSlider.prototype.buildArrows = function(position) {
         if (position === undefined || position === '') return;
         var _ = this;
@@ -256,4 +262,8 @@
             element.rslider.changeSlide('jump', slideNr);
         });
     };
+
+    $.fn.rsGetCurrentSlide = function() {
+        return this.get(0).rslider.getCurrentSlide();
+    };    
 }(jQuery));
