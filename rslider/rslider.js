@@ -65,7 +65,11 @@
         /* Initialize positions vector */
         for (var i = 0; i < _.slidesCount; i++) {
             var element = $(_.slides[i]);
-            if (_.currentClass) { element.addClass(_.currentClass); }
+            if (element.hasClass(_.currentClass)) {
+                var elementAlreadyHasCurrentClass = true;
+                var elementThatAlreadyHasCurrentClass = element;
+            };
+            if (_.currentClass) { element.addClass(_.currentClass); };
             _.slidesPositions.push(
                 element.position().left + 
                 element.width()/2 + 
@@ -73,8 +77,10 @@
                 parseInt(element.css('padding-left'), 10) + 
                 parseInt(element.css('border-left-width'), 10)
             );
-            if (_.currentClass) { element.removeClass(_.currentClass); }
+            if (_.currentClass) { element.removeClass(_.currentClass); };
         };
+
+        if (elementAlreadyHasCurrentClass) { elementThatAlreadyHasCurrentClass.addClass(_.currentClass); };
 
         /* Center initial element */
         _.changeSlide('initial');
@@ -130,7 +136,7 @@
                 };
                 break;
             case 'initial':
-                if (_.initialSlide) {
+                if (typeof _.initialSlide == 'number') {
                     var newOffset = _.centerPoint - _.slidesPositions[_.initialSlide];
                     _.slider.animate({ whyNotToUseANonExistingProperty: newOffset }, { 
                         step: function(now) {
@@ -143,6 +149,15 @@
                         _.slides.eq(_.initialSlide).addClass(_.currentClass);
                     }
                     _.currentSlide = _.initialSlide;
+                };
+                if (typeof _.initialSlide == 'string') {
+                    for (var i = 0; i < _.slides.length; i++) {
+                        if ($(_.slides[i]).hasClass(_.initialSlide)) {
+                            _.initialSlide = i;
+                            _.changeSlide('initial');
+                            break;
+                        };
+                    };
                 };
                 break;
             case 'jump': 
