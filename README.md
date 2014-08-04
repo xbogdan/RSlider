@@ -59,11 +59,12 @@ $(document).ready(function() {
   Option | Type | Default | Description
   ------ | ---- | ------- | -----------
   width  | int  | 500     | Sliders mask width
-  arrows  | string | 'sides' | 'sides' or 'bottom' 
+  arrows  | string | false | 'sides' or 'bottom' 
   dots  | boolean | false | Dots under the slider 
-  initialSlide | int | number of elements / 2 | Which element to be centered
+  currentClass | string | none | Class for the selected slide
+  initialSlide | int / string | number of elements / 2 | Which element to be centered
   overlay | boolean | false | Overlay container
-  overlayClass | string | empty string | Class for overlay container
+  overlayClass | string | none | Class for overlay container
 
 
 #### Methods
