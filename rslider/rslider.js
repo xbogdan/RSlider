@@ -176,9 +176,19 @@
                     _.slides.eq(_.currentSlide).addClass(_.currentClass);
                 };
                 break;
-        }
+        };
 
-    }
+        /* Update dots when the current slide changes */
+        if (_.dots) {
+            for (var i = 0; i < _.dotsArray.length; i++) {
+                if (i === _.currentSlide) {
+                    _.dotsArray[i].addClass('rs-dot-active');
+                } else {
+                    _.dotsArray[i].removeClass('rs-dot-active');
+                };
+            };
+        };
+    };
 
     RSlider.prototype.getCurrentSlide = function(position) {
         var _ = this;
@@ -196,14 +206,14 @@
             arrows.append(_.nextArrow);
             _.sliderBox.append(arrows);
             _.initArrowsEvents();
-        }
+        };
         if (position === 'sides') {
             _.prevArrow.addClass('rs-arrow-abs');
             _.nextArrow.addClass('rs-arrow-abs');
             _.sliderBox.append(_.prevArrow);
             _.sliderBox.append(_.nextArrow);
             _.initArrowsEvents();
-        }
+        };
     };
 
     RSlider.prototype.initArrowsEvents = function() {
@@ -226,7 +236,7 @@
             var dot = $('<a class="rs-dot" />').data('slide-nr', i);
             if (i === _.currentSlide) {
                 dot.addClass('rs-dot-active');
-            }
+            };
             dot.on('click', function(event) {
                 event.preventDefault();
                 _.changeSlide('jump', $(this).data('slide-nr'));
