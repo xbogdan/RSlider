@@ -25,7 +25,7 @@
             _.sliderOverlayClass = options && options.overlayClass ? options.overlayClass : '';
             _.sliderBox = null;
             _.dots = options && options.dots ? options.dots : false;
-            _.arrows = options && options.arrows ? options.arrows : 'sides' ;
+            _.arrows = options && options.arrows === false ? false : (options && options.arrows === undefined ? 'sides' : options.arrows);
             _.initialSlide = options && options.initialSlide ? options.initialSlide : null;
             _.currentSlide = null;
             _.currentClass = options && options.currentClass ? options.currentClass :  '';
