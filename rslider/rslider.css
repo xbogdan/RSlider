@@ -57,12 +57,16 @@
 }
 .rs-dots {
     font-size: 0;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -15px;
 }
 .rs-dot {
     display: inline-block;
     width: 7px;
     height: 7px;
-    margin: 10px 5px 0 5px;
+    margin: 0 5px 0 5px;
     background-color: black;
     opacity: .5;
     border-radius: 100%;
