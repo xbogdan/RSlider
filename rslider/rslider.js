@@ -9,7 +9,7 @@
  * License MIT
  *
  * Version:  v1.0
- * Last update: 2014-07-03
+ * Last update: 2015-01-20
  */
 (function($) {
     RSlider = (function() {
