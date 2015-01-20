@@ -224,9 +224,14 @@
         var dots = $('<div class="rs-dots" />');
         for (var i = 0; i < _.slidesCount; i++) {
             var dot = $('<a class="rs-dot" />').data('slide-nr', i);
+            if (i === _.currentSlide) {
+                dot.addClass('rs-dot-active');
+            }
             dot.on('click', function(event) {
                 event.preventDefault();
                 _.changeSlide('jump', $(this).data('slide-nr'));
+                $(this).parents('.rs-dots').find('.rs-dot-active').removeClass('rs-dot-active');
+                $(this).addClass('rs-dot-active');
             });
             _.dotsArray.push(dot);
             dots.append(dot);
