@@ -65,6 +65,7 @@
         /* Initialize positions vector */
         for (var i = 0; i < _.slidesCount; i++) {
             var element = $(_.slides[i]);
+            element.addClass('rs-track-item');
             if (element.hasClass(_.currentClass)) {
                 var elementAlreadyHasCurrentClass = true;
                 var elementThatAlreadyHasCurrentClass = element;

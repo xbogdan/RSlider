@@ -9,6 +9,9 @@
     font-size: 0;
     white-space: nowrap;
 }
+.rs-track .rs-track-item {
+    display: inline-block !important;
+}
 .rs-mask {
     position: relative;
     margin: 0 auto;
