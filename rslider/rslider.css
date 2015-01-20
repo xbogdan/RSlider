@@ -70,6 +70,7 @@
     background-color: black;
     opacity: .5;
     border-radius: 100%;
+    vertical-align: middle;
 }
 .rs-dot:hover,
 .rs-dot.rs-dot-active {
