@@ -5,7 +5,7 @@
 .rs-track {
     position: relative;
     z-index: 1;
-    margin-left: 0px; 
+    margin-left: 0px;
     font-size: 0;
     white-space: nowrap;
 }
@@ -75,4 +75,36 @@
 .rs-dot:hover,
 .rs-dot.rs-dot-active {
     opacity: .9;
+}
+
+.rs-blur {
+    width: 100%;
+}
+
+.rs-blur:before {
+    position: absolute;
+    content: '';
+    width: 50%;
+    height: 100%;
+    background: -moz-linear-gradient(to right, #f4f4f4 0, rgba(244,244,244,0.01) 100%) repeat scroll 0 0 transparent;
+    background: -webkit-gradient(linear, left top, left top, color-stop(0%, #f4f4f4), color-stop(100%, rgba(244,244,244,0.01)));
+    background: -webkit-linear-gradient(left, #f4f4f4 0%, rgba(244,244,244,0.01) 100%);
+    background: -o-linear-gradient(left, #f4f4f4 0%, rgba(244,244,244,0.01) 100%);
+    background: -ms-linear-gradient(left, #f4f4f4 0%, rgba(244,244,244,0.01) 100%);
+    background: linear-gradient(to right, #f4f4f4 0%, rgba(244,244,244,0.01) 100%);
+    left: 0;
+}
+
+.rs-blur:after {
+    position: absolute;
+    content: '';
+    width: 50%;
+    height: 100%;
+    background: -moz-linear-gradient(to left, #f4f4f4 0, rgba(244,244,244,0.01) 100%) repeat scroll 0 0 transparent;
+    background: -webkit-gradient(linear, right top, right top, color-stop(0%, #f4f4f4), color-stop(100%, rgba(244,244,244,0.01)));
+    background: -webkit-linear-gradient(right, #f4f4f4 0%, rgba(244,244,244,0.01) 100%);
+    background: -o-linear-gradient(right, #f4f4f4 0%, rgba(244,244,244,0.01) 100%);
+    background: -ms-linear-gradient(right, #f4f4f4 0%, rgba(244,244,244,0.01) 100%);
+    background: linear-gradient(to left, #f4f4f4 0%, rgba(244,244,244,0.01) 100%);
+    right: 0;
 }
