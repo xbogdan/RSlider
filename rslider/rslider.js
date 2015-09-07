@@ -26,7 +26,7 @@
             _.sliderBox = null;
             _.dots = options && options.dots ? options.dots : false;
             _.arrows = options && options.arrows === false ? false : (options && options.arrows === undefined ? 'sides' : options.arrows);
-            _.initialSlide = options && options.initialSlide ? options.initialSlide : null;
+            _.initialSlide = options && typeof options.initialSlide !== 'undefined' ? options.initialSlide : null;
             _.currentSlide = null;
             _.currentClass = options && options.currentClass ? options.currentClass :  '';
             _.slidesPositions = [];
@@ -50,7 +50,7 @@
         _.sliderMask.css('width', _.width+'px');
         _.sliderBox = _.sliderMask.parent().addClass('rs').css('width', _.width+'px');
         _.slidesCount = _.slides.length;
-        if (!_.initialSlide) { _.initialSlide = Math.ceil(_.slidesCount / 2); }
+        if (_.initialSlide === null) { _.initialSlide = Math.ceil(_.slidesCount / 2); }
 
         if (document.body.style.MozTransform !== undefined) {
             _.transitionType = "-moz-transform";
@@ -72,10 +72,10 @@
             };
             if (_.currentClass) { element.addClass(_.currentClass); };
             _.slidesPositions.push(
-                element.position().left + 
-                element.width()/2 + 
-                parseInt(element.css('margin-left'), 10) + 
-                parseInt(element.css('padding-left'), 10) + 
+                element.position().left +
+                element.width()/2 +
+                parseInt(element.css('margin-left'), 10) +
+                parseInt(element.css('padding-left'), 10) +
                 parseInt(element.css('border-left-width'), 10)
             );
             if (_.currentClass) { element.removeClass(_.currentClass); };
@@ -106,31 +106,31 @@
     RSlider.prototype.changeSlide = function(action, slideNr) {
         var _ = this;
         switch(action) {
-            case 'next': 
+            case 'next':
                 if (_.currentSlide + 1 < _.slidesCount) {
                     var newOffset = _.centerPoint - _.slidesPositions[++_.currentSlide];
-                    _.slider.animate({ whyNotToUseANonExistingProperty: newOffset }, { 
+                    _.slider.animate({ whyNotToUseANonExistingProperty: newOffset }, {
                         step: function(now) {
                             $(this).css(_.transitionType, 'translate3d('+now+'px, 0px, 0px)')
                         },
                         duration: _.animTime
                     }, 'linear');
-                    if (_.currentClass) { 
+                    if (_.currentClass) {
                         _.slides.eq(_.currentSlide-1).removeClass(_.currentClass);
                         _.slides.eq(_.currentSlide).addClass(_.currentClass);
                     };
                 };
                 break;
-            case 'prev': 
+            case 'prev':
                 if (_.currentSlide - 1 >= 0) {
                     var newOffset = _.centerPoint - _.slidesPositions[--_.currentSlide];
-                    _.slider.animate({ whyNotToUseANonExistingProperty: newOffset }, { 
+                    _.slider.animate({ whyNotToUseANonExistingProperty: newOffset }, {
                         step: function(now) {
                             $(this).css(_.transitionType, 'translate3d('+now+'px, 0px, 0px)')
                         },
                         duration: _.animTime
                     }, 'linear');
-                    if (_.currentClass) { 
+                    if (_.currentClass) {
                         _.slides.eq(_.currentSlide+1).removeClass(_.currentClass);
                         _.slides.eq(_.currentSlide).addClass(_.currentClass);
                     };
@@ -139,13 +139,13 @@
             case 'initial':
                 if (typeof _.initialSlide == 'number') {
                     var newOffset = _.centerPoint - _.slidesPositions[_.initialSlide];
-                    _.slider.animate({ whyNotToUseANonExistingProperty: newOffset }, { 
+                    _.slider.animate({ whyNotToUseANonExistingProperty: newOffset }, {
                         step: function(now) {
                             $(this).css(_.transitionType, 'translate3d('+now+'px, 0px, 0px)')
                         },
                         duration: 0
                     }, 'linear');
-                    if (_.currentClass) { 
+                    if (_.currentClass) {
                         _.slider.find('.'+_.currentClass).removeClass(_.currentClass);
                         _.slides.eq(_.initialSlide).addClass(_.currentClass);
                     }
@@ -161,17 +161,17 @@
                     };
                 };
                 break;
-            case 'jump': 
+            case 'jump':
                 if (slideNr === undefined || slideNr < 0 || slideNr >= _.slidesCount) return;
                 _.currentSlide = slideNr;
                 var newOffset = _.centerPoint - _.slidesPositions[_.currentSlide];
-                _.slider.animate({ whyNotToUseANonExistingProperty: newOffset }, { 
+                _.slider.animate({ whyNotToUseANonExistingProperty: newOffset }, {
                     step: function(now) {
                         $(this).css(_.transitionType, 'translate3d('+now+'px, 0px, 0px)')
                     },
                     duration: _.animTime
                 }, 'linear');
-                if (_.currentClass) { 
+                if (_.currentClass) {
                     _.slider.find('.'+_.currentClass).removeClass(_.currentClass);
                     _.slides.eq(_.currentSlide).addClass(_.currentClass);
                 };
@@ -254,13 +254,13 @@
             element.rslider = new RSlider(element, options);
         });
     };
-    
+
     $.fn.rsNext = function() {
         return this.each(function(index, element) {
             element.rslider.changeSlide('next');
         });
     };
-    
+
     $.fn.rsPrev = function() {
         return this.each(function(index, element) {
             element.rslider.changeSlide('prev');
@@ -281,5 +281,5 @@
 
     $.fn.rsGetCurrentSlide = function() {
         return this.get(0).rslider.getCurrentSlide();
-    };    
+    };
 }(jQuery));
